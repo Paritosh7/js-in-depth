@@ -1,8 +1,17 @@
 let cached = {};
 
-function memoizeAddByOne(num) {
-  if (cached[num] === undefined) {
-    cached[num] = num + 1;
+function square(number) {
+  if (cached[number] === undefined || cached[number] === null) {
+    cached[number] = number * number;
+    return cached[number];
   }
-  return cached[num];
+  console.log("WHoopady doo! I am already memoized!");
+  return cached[number];
 }
+
+console.log(square(2));
+console.log(square(2));
+console.log(square(3));
+console.log(square(3));
+console.log(square(5));
+console.log(cached);
