@@ -4,4 +4,4 @@ function appendDiv(message) {
   document.body.appendChild(div);
 }
 
-export { appendDiv };
+export default appendDiv;
