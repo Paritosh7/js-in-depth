@@ -1,0 +1,21 @@
+body {
+  padding: 0;
+}
+nav,
+aside,
+main {
+  height: 250px;
+  border: 3px solid;
+}
+nav {
+  border-color: hsl(0deg 100% 50%);
+  background: hsl(0deg 100% 50% / 0.2);
+}
+aside {
+  border-color: hsl(125deg 75% 45%);
+  background: hsl(125deg 75% 45% / 0.2);
+}
+main {
+  border-color: hsl(300deg 75% 60%);
+  background: hsl(300deg 75% 60% / 0.2);
+}
