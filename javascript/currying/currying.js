@@ -11,19 +11,9 @@ function curry(fn) {
   };
 }
 
-function sum(a, b, c, d) {
-  return a + b + c + d;
-}
+const join = (a, b, c) => {
+  return `${a}_${b}_${c}`;
+};
 
-const curriedSum = curry(sum);
-console.log(curriedSum(1)(2)(3, 4));
-
-// function a(...rest) {
-//   b(...rest);
-// }
-
-// function b(a, b, c) {
-//   console.log(a, b, c);
-// }
-
-// a(1, 22, 3);
+const curriedJoin = curry(join);
+console.log(curriedJoin(1, 2, 3));
