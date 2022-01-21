@@ -24,6 +24,45 @@ class LinkedList {
     this.size++;
   }
 
+  removeFirst() {
+    if (this.getSize() === 1) {
+      this.head = null;
+      this.tail = null;
+      this.size--;
+    }
+    let nextEle = this.head.next;
+    this.head = nextEle;
+    this.size--;
+  }
+
+  removeLast(idx) {
+    if (!idx) idx = this.getSize() - 1;
+
+    if (this.getSize() === 1) {
+      this.head = null;
+      this.tail = null;
+      this.size--;
+    } else {
+      let previousNode = this.getNode(idx);
+      this.tail = previousNode;
+      this.tail.next = null;
+      this.size--;
+    }
+  }
+
+  remove(idx) {
+    if (this.getSize() === 0) throw new Error("empty List");
+    else if (idx < 0 || idx >= this.getSize())
+      throw new Error("Index out of bounds");
+    else if (idx === 0) this.removeFirst();
+    else if (idx === this.getSize() - 1 || !idx) this.removeLast(idx);
+    else {
+      var previousNode = this.getNode(idx);
+      previousNode.next = previousNode.next.next;
+      this.size--;
+    }
+  }
+
   addStart(data) {
     var nn = new Node(data);
     if (this.size === 0) this.push();
@@ -47,7 +86,7 @@ class LinkedList {
 
   addLast(data, idx) {
     var nn = new Node(data);
-    var previousNode = getNode(idx);
+    var previousNode = this.getNode(idx);
 
     previousNode.next = nn;
     this.tail = nn;
@@ -75,6 +114,7 @@ class LinkedList {
       console.log(ele.data);
       ele = ele.next;
     }
+    console.log("------------------");
   }
 
   getSize() {
@@ -83,13 +123,16 @@ class LinkedList {
 }
 
 var ll = new LinkedList();
+console.log(ll);
 ll.add(1);
 ll.add(2);
 ll.add(3);
 ll.add(4);
 ll.add(5);
 ll.show();
-console.log("--------------------");
 ll.addStart(1);
 ll.add(90, 3);
+ll.show();
+ll.remove();
+ll.remove(2);
 ll.show();
