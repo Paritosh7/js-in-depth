@@ -1,22 +1,33 @@
-function thunk() {
-  const returnedPromise = asyncAction()("started fetching");
-  console.log("thunk", returnedPromise);
-  returnedPromise
-    .then((res) => {
-      console.log("thunk then: ", res);
-    })
-    .catch((err) => console.log(err));
-  console.log("Then is going to be called later. ");
-}
+const obj = {
+  from: 1,
+  to: 5,
+};
 
-function asyncAction() {
-  return function (start) {
-    console.log("start: ", start);
-    return fetch(
-      "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
-    );
-    // ).then((res) => console.log("then: ", res));
+const anotherObj = {
+  0: "hey",
+  1: "you",
+  length: 2,
+  wahh: 33,
+};
+
+const anotherObjArr = Array.from(anotherObj);
+console.log(anotherObjArr);
+
+obj[Symbol.iterator] = function () {
+  var start = this.from;
+  var end = this.to;
+  return {
+    next: () => {
+      if (start <= end) {
+        return { done: false, value: start++ };
+      } else return { done: true };
+    },
   };
+};
+
+for (let ele of obj) {
+  console.log(ele);
 }
 
-thunk();
+const arr = [...obj];
+console.log(arr);
