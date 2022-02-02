@@ -1,33 +1,19 @@
-const obj = {
-  from: 1,
-  to: 5,
-};
+let i = 0;
 
-const anotherObj = {
-  0: "hey",
-  1: "you",
-  length: 2,
-  wahh: 33,
-};
+let start = Date.now();
 
-const anotherObjArr = Array.from(anotherObj);
-console.log(anotherObjArr);
+function count() {
+  // do a piece of the heavy job (*)
+  do {
+    i++;
+    console.log(i % 1e6 === 0);
+  } while (i % 1e6 != 0);
 
-obj[Symbol.iterator] = function () {
-  var start = this.from;
-  var end = this.to;
-  return {
-    next: () => {
-      if (start <= end) {
-        return { done: false, value: start++ };
-      } else return { done: true };
-    },
-  };
-};
-
-for (let ele of obj) {
-  console.log(ele);
+  if (i == 1e9) {
+    alert("Done in " + (Date.now() - start) + "ms");
+  } else {
+    setTimeout(count); // schedule the new call (**)
+  }
 }
 
-const arr = [...obj];
-console.log(arr);
+document.getElementById("btn").addEventListener("click", count);
