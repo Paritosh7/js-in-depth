@@ -12,11 +12,11 @@ function PaidUser(name, score, accountBalance) {
   this.accountBalance = accountBalance;
 }
 
+PaidUser.prototype = Object.create(User.prototype);
+
 PaidUser.prototype.increaseAccountBalance = function () {
   this.accountBalance++;
 };
-
-Object.setPrototypeOf(PaidUser.prototype, User.prototype);
 
 // const user1 = new User("A", 21);
 // console.log(user1);
