@@ -22,17 +22,13 @@ class Stack {
 
   pop() {
     if (this.size() === 0) throw new Error("Empty list");
-    else if (this.size() === 1) {
-      this.top = null;
+    else 
+      let temp = this.top;
+      this.top = this.top.next;
+      temp.next = null;
       this.length--;
-      return this;
-    } else {
-      var next = this.top.next;
-      this.top.next = null;
-      this.top = next;
-      this.length--;
-      return this;
-    }
+      return temp;
+    
   }
   size() {
     return this.length;
