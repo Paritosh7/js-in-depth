@@ -9,3 +9,9 @@ const anotherArr = arr.reduce((acc, curr) => {
 });
 
 console.log(anotherArr);
+
+function help() {
+  console.log(this);
+}
+
+help.call({ name: "Paritosh" });
