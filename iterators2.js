@@ -1,19 +1,17 @@
-"use-strict";
-const obj = {
-  from: 5,
-  to: 10,
+let obj = {
+  from: 1,
+  to: 5,
 };
 
 obj[Symbol.iterator] = function () {
   let start = this.from;
   let end = this.to;
+
   return {
-    next: function () {
-      if (start < end) {
+    next: function next() {
+      if (start <= end) {
         return { value: start++, done: false };
-      } else {
-        return { done: true };
-      }
+      } else return { done: true };
     },
   };
 };
